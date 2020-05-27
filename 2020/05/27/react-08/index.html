@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhaohui58.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="让列表数据化现在的列表还是写死的两个&#96;&#96;标签，那要变成动态显示的，就需要把这个列表先进行数据化，然后再用javascript代码，循环在页面上。 我们先给list数组增加两个数组元素，代码如下： 123456789constructor(props)&amp;#123;    super(props) &#x2F;&#x2F;调用父类的构造函数，固定写法    this.state&#x3D;&amp;#123;        inputVa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React实例">
+<meta property="og:url" content="http://zhaohui58.cn/2020/05/27/react-08/index.html">
+<meta property="og:site_name" content="Sunshine">
+<meta property="og:description" content="让列表数据化现在的列表还是写死的两个&#96;&#96;标签，那要变成动态显示的，就需要把这个列表先进行数据化，然后再用javascript代码，循环在页面上。 我们先给list数组增加两个数组元素，代码如下： 123456789constructor(props)&amp;#123;    super(props) &#x2F;&#x2F;调用父类的构造函数，固定写法    this.state&#x3D;&amp;#123;        inputVa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-27T08:19:46.000Z">
+<meta property="article:modified_time" content="2020-05-27T08:33:34.507Z">
+<meta property="article:author" content="Sunshine">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zhaohui58.cn/2020/05/27/react-08/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React实例 | Sunshine</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sunshine</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Sunshine的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-react">
+
+    <a href="/react/" rel="section"><i class="fa fa-anchor fa-fw"></i>React</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/27/react-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React实例
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-27 16:19:46 / 修改时间：16:33:34" itemprop="dateCreated datePublished" datetime="2020-05-27T16:19:46+08:00">2020-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="让列表数据化"><a href="#让列表数据化" class="headerlink" title="让列表数据化"></a>让列表数据化</h3><p>现在的列表还是写死的两个``标签，那要变成动态显示的，就需要把这个列表先进行数据化，然后再用<code>javascript</code>代码，循环在页面上。</p>
+<p>我们先给list数组增加两个数组元素，代码如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(<span class="params">props</span>)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props) <span class="comment">//调用父类的构造函数，固定写法</span></span><br><span class="line">    <span class="keyword">this</span>.state=&#123;</span><br><span class="line">        inputValue:<span class="string">'Sunshine'</span> , <span class="comment">// input中的值</span></span><br><span class="line">        <span class="comment">//----------主要 代码--------start</span></span><br><span class="line">        list:[<span class="string">'项目一'</span>,<span class="string">'项目二'</span>]   </span><br><span class="line">        <span class="comment">//----------主要 代码--------end</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了数据后，可以在<code>JSX</code>部分进行循环输出，代码如下：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    <span class="keyword">return</span>  (</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">Fragment</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=</span></span><span class="xquery">&#123;this.state.inputValue&#125;</span><span class="xml"><span class="tag"> <span class="attr">onChange</span>=</span></span><span class="xquery">&#123;this.inputChange.bind(this)&#125;</span><span class="xml"><span class="tag"> /&gt;</span></span></span><br><span class="line"><span class="xml">                </span><span class="xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span> 增加项目 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">                </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">                    this.state.list.<span class="keyword">map</span>((<span class="type">item</span>,index)=&gt;&#123;</span></span><br><span class="line"><span class="xquery">                        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="xquery">&#123;<span class="type">item</span>&#125;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    &#125;)</span></span><br><span class="line"><span class="xml">                &#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>  </span><br><span class="line">        &lt;/Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完成上面的步骤，数据就不再是固定的了，而是动态管理的，也为我们接下来的添加打下了基础，剩下的步骤也显得很简单了。</p>
+<h3 id="增加服务选项"><a href="#增加服务选项" class="headerlink" title="增加服务选项"></a>增加服务选项</h3><p>要增加服务选项，我们需要再增加按钮上先绑定一个方法<code>this.addList</code>(这个方法目前还没有，需要我们接下来建立).</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;<span class="keyword">this</span>.addList.bind(<span class="keyword">this</span>)&#125;&gt; 增加项目 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接下来就是把<code>this.addList</code>方法，代码如下：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//增加服务的按钮响应方法</span><br><span class="line">addList()&#123;</span><br><span class="line">    this.<span class="built_in">set</span>State(&#123;</span><br><span class="line">        list:[...this.<span class="keyword">state</span>.list,this.<span class="keyword">state</span>.inputValue]</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里需要说的是<code>...</code>这个是ES6的新语法，叫做扩展运算符。意思就是把list数组进行了分解，形成了新的数组，然后再进行组合。这种写法更简单和直观，所以推荐这种写法。</p>
+<h3 id="解决key值错误"><a href="#解决key值错误" class="headerlink" title="解决key值错误"></a>解决key值错误</h3><p>高兴的同时其实是有一些隐患的，打开浏览器的控制台<code>F12</code>,可以清楚的看到报错了。这个错误的大概意思就是缺少<code>key值</code>。就是在用map循环时，需要设置一个不同的值，这个时React的要求。我们可以暂时用<code>index+item</code>的形式来实现。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">        this.state.list.<span class="keyword">map</span>((<span class="type">item</span>,index)=&gt;&#123;</span></span><br><span class="line"><span class="xquery">            <span class="keyword">return</span> &lt;li<span class="built_in"> key</span>=&#123;index+<span class="type">item</span>&#125;</span><span class="xml">&gt;</span><span class="xquery">&#123;<span class="type">item</span>&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组下标的传递"><a href="#数组下标的传递" class="headerlink" title="数组下标的传递"></a>数组下标的传递</h3><p>如果要删除一个东西，就要得到数组里的一个编号，这里指下标。传递下标就要有事件产生，先来绑定一个双击事件.代码如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.list.map(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">                &lt;li </span><br><span class="line">                    key=&#123;index+item&#125;</span><br><span class="line">                    onClick=&#123;<span class="keyword">this</span>.deleteItem.bind(<span class="keyword">this</span>,index)&#125;</span><br><span class="line">                &gt;</span><br><span class="line">                    &#123;item&#125;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">            )</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为了看着更清晰，我们在<code>return</code>部分加了<code>()</code>这要就可以换行编写<code>JSX</code>代码了.在<code>onClick</code>我们绑定了<code>deleteItem</code>方法.</p>
+<h3 id="编写deleteItem方法"><a href="#编写deleteItem方法" class="headerlink" title="编写deleteItem方法"></a>编写deleteItem方法</h3><p>绑定做好了,现在需要把<code>deleteItem</code>,在代码的最下方,加入下面的代码.方法接受一个参数<code>index</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除单项服务</span></span><br><span class="line">deleteItem(index)&#123;</span><br><span class="line">    let <span class="built_in">list</span> = <span class="keyword">this</span>.state.<span class="built_in">list</span></span><br><span class="line">    <span class="built_in">list</span>.splice(index,<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        <span class="built_in">list</span>:<span class="built_in">list</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实这里边是有一个坑的,有的小伙伴肯定会认为下面的代码也是正确的.</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//删除单项服务</span><br><span class="line">deleteItem(index)&#123;</span><br><span class="line">    this.<span class="keyword">state</span>.list.splice(index,<span class="number">1</span>)</span><br><span class="line">    this.<span class="built_in">set</span>State(&#123;</span><br><span class="line">        list:this.<span class="keyword">state</span>.list</span><br><span class="line">    &#125;) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>记住React是禁止直接操作state的,虽然上面的方法也管用,但是在后期的性能优化上会有很多麻烦,所以一定不要这样操作.这也算是我<code>React</code>初期踩的比较深的一个坑,希望小伙伴们可以跳坑.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/27/react-07/" rel="prev" title="React响应式设计原理和数据绑定">
+      <i class="fa fa-chevron-left"></i> React响应式设计原理和数据绑定
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/27/react-09/" rel="next" title="React进阶——JSX踩坑的几个地方">
+      React进阶——JSX踩坑的几个地方 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sunshine"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Sunshine</p>
+  <div class="site-description" itemprop="description">热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered By - Sunshine</span>
+</div>
+  <div class="powered-by">
+   个人专属  ｜  博客-Sunshine
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
