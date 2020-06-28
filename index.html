@@ -158,6 +158,795 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/06/28/react-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/react-18/" class="post-title-link" itemprop="url">React高级——axios数据请求</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-28 15:22:46 / 修改时间：16:47:49" itemprop="dateCreated datePublished" datetime="2020-06-28T15:22:46+08:00">2020-06-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="安装axios"><a href="#安装axios" class="headerlink" title="安装axios"></a>安装axios</h3><p><code>Axios</code>的安装可以使用npm来进行安装，你可以直接在项目根目录下，输入下面的代码。</p>
+<p><strong><em>npm install -save axios</em></strong></p>
+<p>安装好<code>axiso</code>之后，需要在使用ajax的地方先引入<code>axios</code> </p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br></pre></td></tr></table></figure>
+
+<p>引入后，可以在<code>componentDidMount</code>生命周期函数里请求ajax，我也建议在<code>componentDidMount</code>函数里执行，因为在render里执行，会出现很多问题，比如一直循环渲染；在<code>componentWillMount</code>里执行，在使用RN时，又会有冲突。所以强烈建议在<code>componentDidMount</code>函数里作<code>ajax</code>请求。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount()&#123;</span><br><span class="line">axios.post(<span class="string">'https:...'</span>)</span><br><span class="line">.<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(<span class="string">'axios 获取数据成功:'</span>+JSON.stringify(res)) &#125;)</span><br><span class="line">.<span class="keyword">catch</span>(<span class="function"><span class="params">(error)</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(<span class="string">'axios 获取数据失败'</span>+error)&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/06/28/react-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/react-17/" class="post-title-link" itemprop="url">React高级——生命周期改善程序性能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-28 15:21:25 / 修改时间：16:10:44" itemprop="dateCreated datePublished" datetime="2020-06-28T15:21:25+08:00">2020-06-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先你要确认你安装了<code>React Developer Tools</code> 有了这个浏览器插件，就可以在控制台中找到React标签，然后在右边点开设置，选中<code>highlight Updates</code>。</p>
+<p>![image-20200628160640699](/Users/zhaohui/Library/Application Support/typora-user-images/image-20200628160640699.png)</p>
+<p>这时候你在浏览器的文本框中输入一下内容，你可以清楚的看到子组件也发生了重新<code>render</code>的情况。</p>
+<p>有很多程序员会忽略这样的性能损耗，认为没有什么大不了的，但是软件的卡顿是一点点产生的，所以必须要减少性能损耗。</p>
+<p>这时我们可以用<code>shouldComponentUpdate</code>解决</p>
+<p>这个问题看似很小，但是当你页面很复杂时，足以影响用户体验。其实用<code>shouldComponentUpdate</code>函数就可以简单的解决调这个问题。</p>
+<p>![image-20200628161020272](/Users/zhaohui/Library/Application Support/typora-user-images/image-20200628161020272.png)</p>
+<p>现在的代码就优雅一些了，也不那么暴力了。这就算是完美解决了子组件的渲染性能问题，你写的代码质量也得到了提高。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/06/01/react-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/01/react-16/" class="post-title-link" itemprop="url">React高级——生命周期</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-01 17:02:45 / 修改时间：17:40:18" itemprop="dateCreated datePublished" datetime="2020-06-01T17:02:45+08:00">2020-06-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>React声明周期的四个大阶段：</p>
+<ol>
+<li><code>Initialization</code>:初始化阶段。</li>
+<li><code>Mounting</code>: 挂在阶段。</li>
+<li><code>Updation</code>: 更新阶段。</li>
+<li><code>Unmounting</code>: 销毁阶段</li>
+</ol>
+<p>因此可以把React的生命周期分为两类：挂载卸载过程和更新过程。<br>React的生命周期图:</p>
+<p><img src="https://gitee.com/sunshine58/image-oss/raw/master/uPic/2020-06/WechatIMG108.png" alt="WechatIMG108"></p>
+<h3 id="挂载卸载过程"><a href="#挂载卸载过程" class="headerlink" title="挂载卸载过程"></a>挂载卸载过程</h3><h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor()"></a>constructor()</h4><p>constructor()中完成了React数据的初始化，它接受两个参数：props和context，当想在函数内部使用这两个参数时，需使用super()传入这两个参数。<br> 注意：只要使用了constructor()就必须写super(),否则会导致this指向错误。</p>
+<h4 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount()"></a>componentWillMount()</h4><p>componentWillMount()一般用的比较少，它更多的是在服务端渲染时使用。它代表的过程是组件已经经历了constructor()初始化数据后，但是还未渲染DOM时。</p>
+<h4 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount()"></a>componentDidMount()</h4><p>组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染</p>
+<h4 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount ()"></a>componentWillUnmount ()</h4><p>在此处完成组件的卸载和数据的销毁。</p>
+<ol>
+<li>clear你在组建中所有的setTimeout,setInterval</li>
+<li>移除所有组建中的监听 removeEventListener</li>
+<li>有时候我们会碰到这个warning:</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Can only update a mounted or mounting component. <span class="function">This usually      means you called <span class="title">setState</span>(<span class="params"></span>) <span class="keyword">on</span> an unmounted component. This <span class="keyword">is</span> a   no-op. Please check the code <span class="keyword">for</span> the undefined component.</span></span><br></pre></td></tr></table></figure>
+
+<p>原因：因为你在组件中的ajax请求返回setState,而你组件销毁的时候，请求还未完成，因此会报warning<br> 解决方法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.isMount === <span class="literal">true</span></span><br><span class="line">    axios.post().then((res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">this</span>.isMount &amp;&amp; <span class="keyword">this</span>.setState(&#123;   <span class="comment">// 增加条件ismount为true时</span></span><br><span class="line">      aaa:res</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">componentWillUnmount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.isMount === <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新过程"><a href="#更新过程" class="headerlink" title="更新过程"></a>更新过程</h3><h4 id="componentWillReceiveProps-nextProps"><a href="#componentWillReceiveProps-nextProps" class="headerlink" title="componentWillReceiveProps (nextProps)"></a>componentWillReceiveProps (nextProps)</h4><ol>
+<li>在接受父组件改变后的props需要重新渲染组件时用到的比较多</li>
+<li>接受一个参数nextProps</li>
+<li>通过对比nextProps和this.props，将nextProps的state为当前组件的state，从而重新渲染组件</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  componentWillReceiveProps (nextProps) &#123;</span><br><span class="line">    nextProps.openNotice !== <span class="keyword">this</span>.props.openNotice&amp;&amp;<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        openNotice:nextProps.openNotice</span><br><span class="line">    &#125;，() =&gt; &#123;</span><br><span class="line">      console.log(<span class="keyword">this</span>.state.openNotice:nextProps)</span><br><span class="line">      <span class="comment">//将state更新为nextProps,在setState的第二个参数（回调）可以打         印出新的state</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="shouldComponentUpdate-nextProps-nextState"><a href="#shouldComponentUpdate-nextProps-nextState" class="headerlink" title="shouldComponentUpdate(nextProps,nextState)"></a>shouldComponentUpdate(nextProps,nextState)</h4><ol>
+<li>主要用于性能优化(部分更新)</li>
+<li>唯一用于控制组件重新渲染的生命周期，由于在react中，setState以后，state发生变化，组件会进入重新渲染的流程，在这里return false可以阻止组件的更新</li>
+<li>因为react父组件的重新渲染会导致其所有子组件的重新渲染，这个时候其实我们是不需要所有子组件都跟着重新渲染的，因此需要在子组件的该生命周期中做判断</li>
+</ol>
+<h4 id="componentWillUpdate-nextProps-nextState"><a href="#componentWillUpdate-nextProps-nextState" class="headerlink" title="componentWillUpdate (nextProps,nextState)"></a>componentWillUpdate (nextProps,nextState)</h4><p>shouldComponentUpdate返回true以后，组件进入重新渲染的流程，进入componentWillUpdate,这里同样可以拿到nextProps和nextState。</p>
+<h4 id="componentDidUpdate-prevProps-prevState"><a href="#componentDidUpdate-prevProps-prevState" class="headerlink" title="componentDidUpdate(prevProps,prevState)"></a>componentDidUpdate(prevProps,prevState)</h4><p>组件更新完毕后，react只会在第一次初始化成功会进入componentDidmount,之后每次重新渲染后都会进入这个生命周期，这里可以拿到prevProps和prevState，即更新前的props和state。</p>
+<h4 id="render"><a href="#render" class="headerlink" title="render()"></a>render()</h4><p>render函数会插入jsx生成的dom结构，react会生成一份虚拟dom树，在每一次组件更新时，在此react会通过其diff算法比较更新前后的新旧DOM树，比较以后，找到最小的有差异的DOM节点，并重新渲染。</p>
+<p>![image-20200601173445152](/Users/zhaohui/Library/Application Support/typora-user-images/image-20200601173445152.png)</p>
+<h4 id="getDerivedStateFromProps-nextProps-prevState"><a href="#getDerivedStateFromProps-nextProps-prevState" class="headerlink" title="getDerivedStateFromProps(nextProps, prevState)"></a>getDerivedStateFromProps(nextProps, prevState)</h4><p>代替componentWillReceiveProps()。<br> 老版本中的componentWillReceiveProps()方法判断前后两个 props 是否相同，如果不同再将新的 props 更新到相应的 state 上去。这样做一来会破坏 state 数据的单一数据源，导致组件状态变得不可预测，另一方面也会增加组件的重绘次数。<br> 举个例子:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// before</span></span><br><span class="line">componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">  <span class="keyword">if</span> (nextProps.isLogin !== <span class="keyword">this</span>.props.isLogin) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; </span><br><span class="line">      isLogin: nextProps.isLogin,   </span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (nextProps.isLogin) &#123;</span><br><span class="line">    <span class="keyword">this</span>.handleClose();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// after</span></span><br><span class="line">static getDerivedStateFromProps(nextProps, prevState) &#123;</span><br><span class="line">  <span class="keyword">if</span> (nextProps.isLogin !== prevState.isLogin) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      isLogin: nextProps.isLogin,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">componentDidUpdate(prevProps, prevState) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!prevState.isLogin &amp;&amp; <span class="keyword">this</span>.props.isLogin) &#123;</span><br><span class="line">    <span class="keyword">this</span>.handleClose();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这两者最大的不同就是:<br> 在 componentWillReceiveProps 中，我们一般会做以下两件事，一是根据 props 来更新 state，二是触发一些回调，如动画或页面跳转等。</p>
+<ol>
+<li>在老版本的 React 中，这两件事我们都需要在 componentWillReceiveProps 中去做。</li>
+<li>而在新版本中，官方将更新 state 与触发回调重新分配到了 getDerivedStateFromProps 与 componentDidUpdate 中，使得组件整体的更新逻辑更为清晰。而且在 getDerivedStateFromProps 中还禁止了组件去访问 this.props，强制让开发者去比较 nextProps 与 prevState 中的值，以确保当开发者用到 getDerivedStateFromProps 这个生命周期函数时，就是在根据当前的 props 来更新组件的 state，而不是去做其他一些让组件自身状态变得更加不可预测的事情。</li>
+</ol>
+<h4 id="getSnapshotBeforeUpdate-prevProps-prevState"><a href="#getSnapshotBeforeUpdate-prevProps-prevState" class="headerlink" title="getSnapshotBeforeUpdate(prevProps, prevState)"></a>getSnapshotBeforeUpdate(prevProps, prevState)</h4><p>代替componentWillUpdate。<br> 常见的 componentWillUpdate 的用例是在组件更新前，读取当前某个 DOM 元素的状态，并在 componentDidUpdate 中进行相应的处理。<br> 这两者的区别在于：</p>
+<ol>
+<li>在 React 开启异步渲染模式后，在 render 阶段读取到的 DOM 元素状态并不总是和 commit 阶段相同，这就导致在<br> componentDidUpdate 中使用 componentWillUpdate 中读取到的 DOM 元素状态是不安全的，因为这时的值很有可能已经失效了。</li>
+<li>getSnapshotBeforeUpdate 会在最终的 render 之前被调用，也就是说在 getSnapshotBeforeUpdate 中读取到的 DOM 元素状态是可以保证与 componentDidUpdate 中一致的。<br> 此生命周期返回的任何值都将作为参数传递给componentDidUpdate（）。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/06/01/react-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/01/react-15/" class="post-title-link" itemprop="url">React高级——ref的使用方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-01 16:40:09 / 修改时间：17:02:27" itemprop="dateCreated datePublished" datetime="2020-06-01T16:40:09+08:00">2020-06-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在react典型的数据流中，<code>props</code>传递是父子组件交互的唯一方式；通过传递一个新的<code>props</code>值来使子组件重新<code>re-render</code>,从而达到父子组件通信。当然，就像react官网所描述的一样，在react典型的数据量之外，某些情况下（例如和第三方的dom库整合，或者某个dom元素focus等）为了修改子组件我们可能需要另一种方式，这就是<code>ref</code>方式。</p>
+<h3 id="ref简介"><a href="#ref简介" class="headerlink" title="ref简介"></a>ref简介</h3><p>React提供的这个<code>ref</code>属性，<strong>表示为对组件真正实例的引用，其实就是<code>ReactDOM.render()返回的组件实例</code></strong>；需要区分一下，<code>ReactDOM.render()</code>渲染组件时返回的是组件实例；而渲染dom元素时，返回是具体的dom节点。</p>
+<p><code>ref</code>可以挂到任何组件上，可以挂到组件上也可以是dom元素上；</p>
+<blockquote>
+<p>挂到组件（这里组件指的是有状态组件）上的ref表示对组件实例的引用，而挂载到dom元素上时表示具体的dom元素节点。</p>
+</blockquote>
+<h3 id="ref可以设置回调函数"><a href="#ref可以设置回调函数" class="headerlink" title="ref可以设置回调函数"></a>ref可以设置回调函数</h3><p>ref属性可以设置为一个回调函数，这也是官方强烈推荐的用法；这个函数执行的时机为：</p>
+<ul>
+<li><code>组件被挂载后</code>，回调函数被立即执行，回调函数的参数为该组件的具体实例。</li>
+<li><code>组件被卸载或者原有的ref属性本身发生变化时</code>，回调也会被立即执行，此时回调函数参数为<code>null</code>，以确保内存泄露。</li>
+</ul>
+<p>例如下面代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">RegisterStepTwo = React.createClass(&#123;</span><br><span class="line">        getInitialState()&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;visible: <span class="literal">true</span>&#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">      changeVisible()&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;visible: !<span class="keyword">this</span>.state.visible&#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">      refCb(instance)&#123;</span><br><span class="line">        console.log(instance);</span><br><span class="line">      &#125;,</span><br><span class="line">      render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;button type=<span class="string">"button"</span> onClick=&#123;<span class="keyword">this</span>.changeVisible&#125;&gt;&#123;<span class="keyword">this</span>.state.visible ? <span class="string">'卸载'</span> : <span class="string">'挂载'</span>&#125;ConfirmPass</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="keyword">this</span>.state.visible ?</span><br><span class="line">                &lt;ConfirmPass ref=&#123;<span class="keyword">this</span>.refCb&#125; onChange=&#123;<span class="keyword">this</span>.handleChange&#125;/&gt;: <span class="literal">null</span></span><br><span class="line">             &#125;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">         )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上述代码，渲染到页面时可以发现console.log出对应的组件实例，切换按钮时，<code>ConfirmPass</code>也在挂载与卸载之间切换，所以能看到不同的console.log结果。</p>
+<h3 id="ref可以设置字符串"><a href="#ref可以设置字符串" class="headerlink" title="ref可以设置字符串"></a>ref可以设置字符串</h3><p>ref还可以设置为字符串值，而不是回调函数；这种方式基本不推荐使用，或者在未来的react版本中不会再支持该方式，但是可以了解一下。</p>
+<p>例如下面<code>input</code>设置ref的值为字符串。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">input</span> <span class="keyword">ref</span>="input" /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后在其他地方如事件回调中通过<code>this.refs.input</code>可以访问到该组件实例，其实就是dom元素节点。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let inputEl = <span class="keyword">this</span>.<span class="built_in">ref</span>s.input;</span><br><span class="line"><span class="comment">//然后通过inputEl来完成后续的逻辑，如focus、获取其值等等</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取ref引用组件对应的dom节点"><a href="#获取ref引用组件对应的dom节点" class="headerlink" title="获取ref引用组件对应的dom节点"></a>获取ref引用组件对应的dom节点</h3><p>不管ref设置值是回调函数还是字符串，都可以通过<code>ReactDOM.findDOMNode(ref)</code>来获取组件挂载后真正的dom节点。</p>
+<p>但是对于html元素使用ref的情况，ref本身引用的就是该元素的实际dom节点，无需使用<code>ReactDOM.findDOMNode(ref)</code>来获取，该方法常用于React组件上的ref。</p>
+<h3 id="ref在有状态组件中的使用"><a href="#ref在有状态组件中的使用" class="headerlink" title="ref在有状态组件中的使用"></a>ref在有状态组件中的使用</h3><p>上文说到过<code>ref</code>用到react有状态组件时，ref引用的是组件的实例；所以可以通过子组件的<code>ref</code>可以访问到子组件实例的<code>props</code>、<code>state</code>、<code>refs</code>、实例方法(非继承而来的方法)等等。</p>
+<h3 id="ref在无状态组件中的使用"><a href="#ref在无状态组件中的使用" class="headerlink" title="ref在无状态组件中的使用"></a>ref在无状态组件中的使用</h3><p>无法通过<code>ref</code>来获取无状态组件实例。</p>
+<p>另外，对于无状态组件我们想访问的无非是其中包含的组件或者dom元素，我们可以通过一个变量来保存我们想要的组件或者dom元素组件的实例引用。例如下面代码：</p>
+<p>copy</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TestComp</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> refDom;</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line">        &lt;div ref=&#123;(node) =&gt; refDom = node&#125;&gt;</span><br><span class="line">            ...</span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这样，可以通过变量<code>refDom</code>来访问到无状态组件中的指定dom元素了，访问其中的其他组件实例类似。</p>
+<h3 id="ref在HOC中存在问题"><a href="#ref在HOC中存在问题" class="headerlink" title="ref在HOC中存在问题"></a>ref在HOC中存在问题</h3><p>react的<code>HOC</code>是高阶组件，简单理解就是包装了一个低阶的组件，最后返回一个高阶的组件；高阶组件其实是在低阶组件基础上做了一些事情，比方说<a href="https://ant.design/docs/react/introduce-cn" target="_blank" rel="noopener"><code>antd</code></a>组件的<code>Form create</code>的方法，它就是在为低阶组件封装了一些特殊的属性，比如<code>form</code>属性。</p>
+<p>既然<code>HOC</code>会基于低阶组件生成一个新的高阶组件，若用<code>ref</code>就不能访问到我们真正需要的低阶组件实例，我们访问到的其实是高阶组件实例。所以:</p>
+<blockquote>
+<p>若HOC不做特殊处理，ref是无法访问到低阶组件实例的</p>
+</blockquote>
+<p>要想用<code>ref</code>访问低阶组件实例，就必须得HOC支持，就像<code>Redux</code>的connect方法提供的<code>withRef</code>属性来访问低阶组件一样。具体可以参考<a href="https://segmentfault.com/a/1190000008112017#articleHeader12" target="_blank" rel="noopener">这里</a>。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>ref</code>提供了一种对于react标准的数据流不太适用的情况下组件间交互的方式，例如管理dom元素focus、text selection以及与第三方的dom库整合等等。 但是在大多数情况下应该使用react响应数据流那种方式，不要过度使用ref。</p>
+<p>另外，在使用ref时，不用担心会导致内存泄露的问题，react会自动帮你管理好，在组件卸载时ref值也会被销毁。</p>
+<p>最后补充一点：</p>
+<blockquote>
+<p>不要在组件的<code>render</code>方法中访问<code>ref</code>引用，<code>render</code>方法只是返回一个虚拟dom，这时组件不一定挂载到dom中或者render返回的虚拟dom不一定会更新到dom中。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/30/react-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/30/react-14/" class="post-title-link" itemprop="url">React高级——PropTypes校验传递值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-30 13:49:16 / 修改时间：14:13:47" itemprop="dateCreated datePublished" datetime="2020-05-30T13:49:16+08:00">2020-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="React中的类型检查：prop-types-包"><a href="#React中的类型检查：prop-types-包" class="headerlink" title="React中的类型检查：prop-types 包"></a>React中的类型检查：prop-types 包</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>编写组件</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">PropTypes</span> from <span class="symbol">'prop</span>-types';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeting</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;h1&gt;<span class="type">Hello</span>, &#123;<span class="keyword">this</span>.props.name&#125;&lt;/h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Greeting</span>.propTypes = &#123;</span><br><span class="line">  name: <span class="type">PropTypes</span>.string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><code>PropTypes</code> 提供一系列验证器，可用于确保组件接收到的数据类型是有效的。在本例中, 我们使用了 <code>PropTypes.string</code>。当传入的 <code>prop</code> 值类型不正确时，JavaScript 控制台将会显示警告。出于性能方面的考虑，<code>propTypes</code> 仅在开发模式下进行检查。</p>
+<p>propTypes提供了使用不同验证器的例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span>;</span><br><span class="line"></span><br><span class="line">MyComponent.propTypes = &#123;</span><br><span class="line">  <span class="comment">// 你可以将属性声明为 JS 原生类型，默认情况下</span></span><br><span class="line">  <span class="comment">// 这些属性都是可选的。</span></span><br><span class="line">  optionalArray: PropTypes.array,</span><br><span class="line">  optionalBool: PropTypes.bool,</span><br><span class="line">  optionalFunc: PropTypes.func,</span><br><span class="line">  optionalNumber: PropTypes.number,</span><br><span class="line">  optionalObject: PropTypes.object,</span><br><span class="line">  optionalString: PropTypes.string,</span><br><span class="line">  optionalSymbol: PropTypes.symbol,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 任何可被渲染的元素（包括数字、字符串、元素或数组）</span></span><br><span class="line">  <span class="comment">// (或 Fragment) 也包含这些类型。</span></span><br><span class="line">  optionalNode: PropTypes.node,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 一个 React 元素。</span></span><br><span class="line">  optionalElement: PropTypes.element,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 一个 React 元素类型（即，MyComponent）。</span></span><br><span class="line">  optionalElementType: PropTypes.elementType,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 你也可以声明 prop 为类的实例，这里使用</span></span><br><span class="line">  <span class="comment">// JS 的 instanceof 操作符。</span></span><br><span class="line">  optionalMessage: PropTypes.instanceOf(Message),</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 你可以让你的 prop 只能是特定的值，指定它为</span></span><br><span class="line">  <span class="comment">// 枚举类型。</span></span><br><span class="line">  optionalEnum: PropTypes.oneOf([<span class="string">'News'</span>, <span class="string">'Photos'</span>]),</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 一个对象可以是几种类型中的任意一个类型</span></span><br><span class="line">  optionalUnion: PropTypes.oneOfType([</span><br><span class="line">    PropTypes.string,</span><br><span class="line">    PropTypes.number,</span><br><span class="line">    PropTypes.instanceOf(Message)</span><br><span class="line">  ]),</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可以指定一个数组由某一类型的元素组成</span></span><br><span class="line">  optionalArrayOf: PropTypes.arrayOf(PropTypes.number),</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可以指定一个对象由某一类型的值组成</span></span><br><span class="line">  optionalObjectOf: PropTypes.objectOf(PropTypes.number),</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可以指定一个对象由特定的类型值组成</span></span><br><span class="line">  optionalObjectWithShape: PropTypes.shape(&#123;</span><br><span class="line">    color: PropTypes.string,</span><br><span class="line">    fontSize: PropTypes.number</span><br><span class="line">  &#125;),</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// An object with warnings on extra properties</span></span><br><span class="line">  optionalObjectWithStrictShape: PropTypes.exact(&#123;</span><br><span class="line">    name: PropTypes.string,</span><br><span class="line">    quantity: PropTypes.number</span><br><span class="line">  &#125;),   </span><br><span class="line"></span><br><span class="line">  <span class="comment">// 你可以在任何 PropTypes 属性后面加上 `isRequired` ，确保</span></span><br><span class="line">  <span class="comment">// 这个 prop 没有被提供时，会打印警告信息。</span></span><br><span class="line">  requiredFunc: PropTypes.func.isRequired,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 任意类型的数据</span></span><br><span class="line">  requiredAny: PropTypes.any.isRequired,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 你可以指定一个自定义验证器。它在验证失败时应返回一个 Error 对象。</span></span><br><span class="line">  <span class="comment">// 请不要使用 `console.warn` 或抛出异常，因为这在 `onOfType` 中不会起作用。</span></span><br><span class="line">  customProp: <span class="function"><span class="keyword">function</span>(<span class="params">props, propName, componentName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/matchme/</span>.test(props[propName])) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(</span><br><span class="line">        <span class="string">'Invalid prop `'</span> + propName + <span class="string">'` supplied to'</span> +</span><br><span class="line">        <span class="string">' `'</span> + componentName + <span class="string">'`. Validation failed.'</span></span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 你也可以提供一个自定义的 `arrayOf` 或 `objectOf` 验证器。</span></span><br><span class="line">  <span class="comment">// 它应该在验证失败时返回一个 Error 对象。</span></span><br><span class="line">  <span class="comment">// 验证器将验证数组或对象中的每个值。验证器的前两个参数</span></span><br><span class="line">  <span class="comment">// 第一个是数组或对象本身</span></span><br><span class="line">  <span class="comment">// 第二个是他们当前的键。</span></span><br><span class="line">  customArrayProp: PropTypes.arrayOf(<span class="function"><span class="keyword">function</span>(<span class="params">propValue, key, componentName, location, propFullName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/matchme/</span>.test(propValue[key])) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(</span><br><span class="line">        <span class="string">'Invalid prop `'</span> + propFullName + <span class="string">'` supplied to'</span> +</span><br><span class="line">        <span class="string">' `'</span> + componentName + <span class="string">'`. Validation failed.'</span></span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>限制单个元素</p>
+<p>可以通过PropsTypes.element来确保传递组件的children中只包含一个元素。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">PropTypes</span> from <span class="symbol">'prop</span>-types';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// 这必须只有一个元素，否则控制台会打印警告。</span></span><br><span class="line">    const children = <span class="keyword">this</span>.props.children;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;children&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">MyComponent</span>.propTypes = &#123;</span><br><span class="line">  children: <span class="type">PropTypes</span>.element.isRequired</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="默认prop值"><a href="#默认prop值" class="headerlink" title="默认prop值"></a>默认prop值</h3><p>您可以通过配置特定的 <code>defaultProps</code> 属性来定义 <code>props</code> 的默认值：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeting</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;h1&gt;<span class="type">Hello</span>, &#123;<span class="keyword">this</span>.props.name&#125;&lt;/h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定 props 的默认值：</span></span><br><span class="line"><span class="type">Greeting</span>.defaultProps = &#123;</span><br><span class="line">  name: <span class="symbol">'Strange</span>r'</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 渲染出 "Hello, Stranger"：</span></span><br><span class="line"><span class="type">ReactDOM</span>.render(</span><br><span class="line">  &lt;<span class="type">Greeting</span> /&gt;,</span><br><span class="line">  document.getElementById(<span class="symbol">'exampl</span>e')</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>如果你正在使用像 <a href="https://babeljs.io/docs/plugins/transform-class-properties/" target="_blank" rel="noopener">transform-class-properties</a> 的 Babel 转换工具，你也可以在 React 组件类中声明 <code>defaultProps</code> 作为静态属性。此语法提案还没有最终确定，需要进行编译后才能在浏览器中运行。要了解更多信息，请查阅 <a href="https://github.com/tc39/proposal-class-fields" target="_blank" rel="noopener">class fields proposal</a>。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeting</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  static defaultProps = &#123;</span><br><span class="line">    name: <span class="symbol">'strange</span>r'</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;<span class="type">Hello</span>, &#123;<span class="keyword">this</span>.props.name&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>defaultProps</code> 用于确保 <code>this.props.name</code> 在父组件没有指定其值时，有一个默认值。<code>propTypes</code> 类型检查发生在 <code>defaultProps</code> 赋值后，所以类型检查也适用于 <code>defaultProps</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/30/react-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/30/react-13/" class="post-title-link" itemprop="url">React高级——调试工具的安装及使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-30 13:41:39 / 修改时间：13:49:28" itemprop="dateCreated datePublished" datetime="2020-05-30T13:41:39+08:00">2020-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们经常使用<code>console.log</code>这种很二的形式来调试程序。其实React在浏览器端是有一个调试工具的，这就是<code>React developer tools</code>，这个是React人必下的一个调试工具。这节课就主要学习一下<code>React developer tools</code>的下载和简单使用。</p>
+<h3 id="下载React-developer-tools"><a href="#下载React-developer-tools" class="headerlink" title="下载React developer tools"></a>下载React developer tools</h3><p>这个需要在<code>chrome浏览器</code>里进行，并且需要科学上网（自行百度）。</p>
+<ol>
+<li>点击浏览器地址栏最右边的<code>...</code>，然后选择<code>更多工具</code>,然后选择<code>扩展程序</code>。</li>
+<li>点击<code>打开chrome网上应用店</code>,直接在搜索框里搜索<code>React</code>，出现的第一个就是。</li>
+<li>点击<code>添加至Chrome</code>,然后就是等待了……….</li>
+</ol>
+<p>这段内容推荐看视频吧，其实并不复杂，但是都是需要上图的，我又懒得作图。</p>
+<h3 id="React-developer-tools-的三种状态"><a href="#React-developer-tools-的三种状态" class="headerlink" title="React developer tools 的三种状态"></a>React developer tools 的三种状态</h3><p><code>React developer tools</code>有三种颜色，三种颜色代表三种状态：</p>
+<ol>
+<li>灰色： 这种就是不可以使用，说明页面不是又React编写的。</li>
+<li>黑色: 说明页面是用React编写的，并且处于生成环境当中。</li>
+<li>红色： 说明页面是用React编写的，并且处于调试环境当中。</li>
+</ol>
+<h3 id="React-developer-tools-的使用"><a href="#React-developer-tools-的使用" class="headerlink" title="React developer tools 的使用"></a>React developer tools 的使用</h3><p>打开浏览器，然后按<code>F12</code>,打开开发者工具，然后在面板的最后一个，你会返现一个<code>React</code>,这个就是安装的插件了。</p>
+<p>在这里你可以清晰的看到React的结构，让自己写的代码更加清晰，你还可以看到组间距的数据传递，再也不用写<code>console.log</code>来测试程序了。</p>
+<p><strong>总结</strong> : 这节课我们学习了React调试工具的安装和使用，在工作中一个前端的调试都是在这里进行的</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/30/react-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/30/react-12/" class="post-title-link" itemprop="url">React进阶——单项数据流和其他</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-30 13:05:59 / 修改时间：13:43:45" itemprop="dateCreated datePublished" datetime="2020-05-30T13:05:59+08:00">2020-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="React-单项数据流"><a href="#React-单项数据流" class="headerlink" title="React 单项数据流"></a>React 单项数据流</h3><p>React是单项数据流，数据流主要从父节点传递到子节点（通过props）</p>
+<p>如果顶层（父级）的某个props改变了，React会重渲染所有的子节点</p>
+<h3 id="Props："><a href="#Props：" class="headerlink" title="Props："></a>Props：</h3><p> <code>props</code>是property的缩写，可以理解为HTML标签的attribute。</p>
+<p>　　不可以使用<code>this.props</code>直接修改props，因为<code>props是</code>只读的，<code>props</code>是用于整个组件树中传递数据和配置。</p>
+<p>　　在当前组件访问<code>props</code>，使用<code>this.props</code>。</p>
+<h3 id="State："><a href="#State：" class="headerlink" title="State："></a>State：</h3><p>​        每个组件都有属于自己的<code>state</code>，<code>state</code>和<code>props</code>的区别在于前者(state)只存在于组件内部，只能从当前组件调用<code>this.setState</code>修改state值（不可以直接修改<code>this.state！</code>）。</p>
+<p>　　一般我们更新子组件都是通过改变<code>state</code>值，将state值通过属性传递给子组件，子组件的获取<code>props</code>值从而达到更新。</p>
+<h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><ol>
+<li>函数式编程让我们的代码更清晰，每个功能都是一个函数。</li>
+<li>函数式编程为我们的代码测试代理了极大的方便，更容易实现前端自动化测试。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/30/react-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/30/react-11/" class="post-title-link" itemprop="url">React进阶——父子组件的传值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-30 13:05:56 / 修改时间：13:31:14" itemprop="dateCreated datePublished" datetime="2020-05-30T13:05:56+08:00">2020-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="父组件向子组件传值"><a href="#父组件向子组件传值" class="headerlink" title="父组件向子组件传值"></a>父组件向子组件传值</h3><p>这里只介绍最实用的，最快速的上手方法。就是使用组件属性的形式父组件给子组件传值。比如：我们在<code>&lt;sunshineItem&gt;组件中加入content</code>属性，然后给属性传递<code>{item}</code>，这样就完成了父组件向子组件传值。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sunshineItem</span> <span class="attr">content</span>=<span class="string">&#123;item&#125;/</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>现在值已经顺利的传递了过去，这时候可以通过<code>this.props.xxx</code>的形式进行接受，比如传递过来的值，可以用如下代码进行接收。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">React</span>, &#123; <span class="type">Component</span> &#125; from <span class="symbol">'reac</span>t'; <span class="comment">//imrc</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sunshineItem</span>  <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123; <span class="comment">//cc</span></span><br><span class="line"></span><br><span class="line">    render() &#123; </span><br><span class="line">        <span class="keyword">return</span> ( </span><br><span class="line">            &lt;div&gt;&#123;<span class="keyword">this</span>.props.content&#125;&lt;/div&gt;</span><br><span class="line">         );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> sunshineItem;</span><br></pre></td></tr></table></figure>
+
+<h3 id="子组件向父组件传递数据"><a href="#子组件向父组件传递数据" class="headerlink" title="子组件向父组件传递数据"></a>子组件向父组件传递数据</h3><p>现在要作这样一个功能：点击组件中的菜单项后，删除改菜单项。在前边的课程中已经学习了这个知识，知识现在组件拆分了，就涉及了一个字组件向父组件传递数据的知识需要掌握。</p>
+<p>先来绑定点击事件，这时候当然是要在<sunshineItem>组件中绑定了，代码如下：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">React</span>, &#123; <span class="type">Component</span> &#125; from <span class="symbol">'reac</span>t'; <span class="comment">//imrc</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sunshineItem</span>  <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123; <span class="comment">//cc</span></span><br><span class="line"></span><br><span class="line">    render() &#123; </span><br><span class="line">        <span class="keyword">return</span> ( </span><br><span class="line">            &lt;div onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;&#123;<span class="keyword">this</span>.props.content&#125;&lt;/div&gt;</span><br><span class="line">         );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick()&#123;</span><br><span class="line">        console.log('点击....')</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> sunshineItem;</span><br></pre></td></tr></table></figure>
+
+<p>React有明确规定，子组件时不能操作父组件里的数据的，所以需要借助一个父组件的方法，来修改父组件的内容。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.list.map((item,<span class="keyword">index</span>)=&gt;&#123;</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">                &lt;sunshineItem </span><br><span class="line">                key=&#123;<span class="keyword">index</span>+item&#125;  </span><br><span class="line">                content=&#123;item&#125;</span><br><span class="line">                <span class="keyword">index</span>=&#123;<span class="keyword">index</span>&#125;</span><br><span class="line">                <span class="comment">//关键代码-------------------start</span></span><br><span class="line">                deleteItem=&#123;<span class="keyword">this</span>.deleteItem.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">                <span class="comment">//关键代码-------------------end</span></span><br><span class="line">                /&gt;</span><br><span class="line">            )</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>子组件</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; from <span class="string">'react'</span>; <span class="comment">//imrc</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sunshineItem</span>  <span class="title">extends</span> <span class="title">Component</span> </span>&#123; <span class="comment">//cc</span></span><br><span class="line">		<span class="comment">//--------------主要代码--------start</span></span><br><span class="line">   <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">       <span class="keyword">super</span>(props)</span><br><span class="line">       <span class="keyword">this</span>.handleClick=<span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>)</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//--------------主要代码--------end</span></span><br><span class="line">    render() &#123; </span><br><span class="line">        <span class="keyword">return</span> ( </span><br><span class="line">            &lt;div onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;&#123;<span class="keyword">this</span>.props.content&#125;&lt;/div&gt;</span><br><span class="line">         );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick()&#123;</span><br><span class="line">        console.log(<span class="string">'点击....'</span>,<span class="keyword">this</span>.props.index)</span><br><span class="line">        <span class="keyword">this</span>.props.deleteItem(<span class="keyword">this</span>.props.index)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> sunshineItem;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/30/react-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/30/react-10/" class="post-title-link" itemprop="url">React进阶——安装Simple React Snippets</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-30 13:05:50 / 修改时间：13:13:52" itemprop="dateCreated datePublished" datetime="2020-05-30T13:05:50+08:00">2020-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="安装Simple-React-Snippets"><a href="#安装Simple-React-Snippets" class="headerlink" title="安装Simple React Snippets"></a>安装Simple React Snippets</h3><p>打开<code>VSCode</code>的插件查单，然后在输入框中输入<code>Simple React Snippets</code>,然后点击进行安装就可以了。</p>
+<p>###　快速进行引入<code>import</code></p>
+<p>直接在<code>vscode</code>中输入<code>imrc</code>，就会快速生成最常用的import代码。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="快速生成class"><a href="#快速生成class" class="headerlink" title="快速生成class"></a>快速生成class</h3><p>在作组件的时候，都需要写一个固定的基本格式，这时候你就可以使用快捷键<code>cc</code>.插件就会快速帮我们生成如下代码：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>  <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    state = &#123;  &#125;</span><br><span class="line">    render() &#123; </span><br><span class="line">        <span class="keyword">return</span> (  );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> ;</span><br></pre></td></tr></table></figure>
+
+<p>还有很多快捷键，如果你需要理解，打开插件的说明文件看一下就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/27/react-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -251,713 +1040,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/27/react-08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/27/react-08/" class="post-title-link" itemprop="url">React实例</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-27 16:19:46 / 修改时间：16:33:34" itemprop="dateCreated datePublished" datetime="2020-05-27T16:19:46+08:00">2020-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="让列表数据化"><a href="#让列表数据化" class="headerlink" title="让列表数据化"></a>让列表数据化</h3><p>现在的列表还是写死的两个``标签，那要变成动态显示的，就需要把这个列表先进行数据化，然后再用<code>javascript</code>代码，循环在页面上。</p>
-<p>我们先给list数组增加两个数组元素，代码如下：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(<span class="params">props</span>)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props) <span class="comment">//调用父类的构造函数，固定写法</span></span><br><span class="line">    <span class="keyword">this</span>.state=&#123;</span><br><span class="line">        inputValue:<span class="string">'Sunshine'</span> , <span class="comment">// input中的值</span></span><br><span class="line">        <span class="comment">//----------主要 代码--------start</span></span><br><span class="line">        list:[<span class="string">'项目一'</span>,<span class="string">'项目二'</span>]   </span><br><span class="line">        <span class="comment">//----------主要 代码--------end</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>有了数据后，可以在<code>JSX</code>部分进行循环输出，代码如下：</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    <span class="keyword">return</span>  (</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">Fragment</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=</span></span><span class="xquery">&#123;this.state.inputValue&#125;</span><span class="xml"><span class="tag"> <span class="attr">onChange</span>=</span></span><span class="xquery">&#123;this.inputChange.bind(this)&#125;</span><span class="xml"><span class="tag"> /&gt;</span></span></span><br><span class="line"><span class="xml">                </span><span class="xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span> 增加项目 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">                </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">                    this.state.list.<span class="keyword">map</span>((<span class="type">item</span>,index)=&gt;&#123;</span></span><br><span class="line"><span class="xquery">                        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="xquery">&#123;<span class="type">item</span>&#125;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    &#125;)</span></span><br><span class="line"><span class="xml">                &#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>  </span><br><span class="line">        &lt;/Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>完成上面的步骤，数据就不再是固定的了，而是动态管理的，也为我们接下来的添加打下了基础，剩下的步骤也显得很简单了。</p>
-<h3 id="增加服务选项"><a href="#增加服务选项" class="headerlink" title="增加服务选项"></a>增加服务选项</h3><p>要增加服务选项，我们需要再增加按钮上先绑定一个方法<code>this.addList</code>(这个方法目前还没有，需要我们接下来建立).</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;<span class="keyword">this</span>.addList.bind(<span class="keyword">this</span>)&#125;&gt; 增加项目 &lt;/button&gt;</span><br></pre></td></tr></table></figure>
-
-<p>接下来就是把<code>this.addList</code>方法，代码如下：</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//增加服务的按钮响应方法</span><br><span class="line">addList()&#123;</span><br><span class="line">    this.<span class="built_in">set</span>State(&#123;</span><br><span class="line">        list:[...this.<span class="keyword">state</span>.list,this.<span class="keyword">state</span>.inputValue]</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里需要说的是<code>...</code>这个是ES6的新语法，叫做扩展运算符。意思就是把list数组进行了分解，形成了新的数组，然后再进行组合。这种写法更简单和直观，所以推荐这种写法。</p>
-<h3 id="解决key值错误"><a href="#解决key值错误" class="headerlink" title="解决key值错误"></a>解决key值错误</h3><p>高兴的同时其实是有一些隐患的，打开浏览器的控制台<code>F12</code>,可以清楚的看到报错了。这个错误的大概意思就是缺少<code>key值</code>。就是在用map循环时，需要设置一个不同的值，这个时React的要求。我们可以暂时用<code>index+item</code>的形式来实现。</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">        this.state.list.<span class="keyword">map</span>((<span class="type">item</span>,index)=&gt;&#123;</span></span><br><span class="line"><span class="xquery">            <span class="keyword">return</span> &lt;li<span class="built_in"> key</span>=&#123;index+<span class="type">item</span>&#125;</span><span class="xml">&gt;</span><span class="xquery">&#123;<span class="type">item</span>&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="数组下标的传递"><a href="#数组下标的传递" class="headerlink" title="数组下标的传递"></a>数组下标的传递</h3><p>如果要删除一个东西，就要得到数组里的一个编号，这里指下标。传递下标就要有事件产生，先来绑定一个双击事件.代码如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.list.map(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">                &lt;li </span><br><span class="line">                    key=&#123;index+item&#125;</span><br><span class="line">                    onClick=&#123;<span class="keyword">this</span>.deleteItem.bind(<span class="keyword">this</span>,index)&#125;</span><br><span class="line">                &gt;</span><br><span class="line">                    &#123;item&#125;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">            )</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
-
-<p>为了看着更清晰，我们在<code>return</code>部分加了<code>()</code>这要就可以换行编写<code>JSX</code>代码了.在<code>onClick</code>我们绑定了<code>deleteItem</code>方法.</p>
-<h3 id="编写deleteItem方法"><a href="#编写deleteItem方法" class="headerlink" title="编写deleteItem方法"></a>编写deleteItem方法</h3><p>绑定做好了,现在需要把<code>deleteItem</code>,在代码的最下方,加入下面的代码.方法接受一个参数<code>index</code>.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除单项服务</span></span><br><span class="line">deleteItem(index)&#123;</span><br><span class="line">    let <span class="built_in">list</span> = <span class="keyword">this</span>.state.<span class="built_in">list</span></span><br><span class="line">    <span class="built_in">list</span>.splice(index,<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        <span class="built_in">list</span>:<span class="built_in">list</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其实这里边是有一个坑的,有的小伙伴肯定会认为下面的代码也是正确的.</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//删除单项服务</span><br><span class="line">deleteItem(index)&#123;</span><br><span class="line">    this.<span class="keyword">state</span>.list.splice(index,<span class="number">1</span>)</span><br><span class="line">    this.<span class="built_in">set</span>State(&#123;</span><br><span class="line">        list:this.<span class="keyword">state</span>.list</span><br><span class="line">    &#125;) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>记住React是禁止直接操作state的,虽然上面的方法也管用,但是在后期的性能优化上会有很多麻烦,所以一定不要这样操作.这也算是我<code>React</code>初期踩的比较深的一个坑,希望小伙伴们可以跳坑.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/27/react-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/27/react-07/" class="post-title-link" itemprop="url">React响应式设计原理和数据绑定</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-27 16:10:16 / 修改时间：16:19:40" itemprop="dateCreated datePublished" datetime="2020-05-27T16:10:16+08:00">2020-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="响应式设计和数据绑定"><a href="#响应式设计和数据绑定" class="headerlink" title="响应式设计和数据绑定"></a>响应式设计和数据绑定</h3><p><code>React</code>不建议你直接操作<code>DOM</code>元素,而是要通过数据进行驱动，改变界面中的效果。React会根据数据的变化，自动的帮助你完成界面的改变。所以在写React代码时，你无需关注DOM相关的操作，只需要关注数据的操作就可以了（这也是React如此受欢迎的主要原因，大大加快了我们的开发速度）。</p>
-<p>数据定义一般放在构造函数里<code>constructor</code></p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js的构造函数，由于其他任何函数执行</span></span><br><span class="line"><span class="function"><span class="keyword">constructor</span><span class="params">(props)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    super(props) //调用父类的构造函数，固定写法</span></span></span><br><span class="line"><span class="function"><span class="comment">    this.state=&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">        inputValue:'' , // input中的值</span></span></span><br><span class="line"><span class="function"><span class="comment">        list:[]    //服务列表</span></span></span><br><span class="line"><span class="function"><span class="comment">    &#125;</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>在<code>React</code>中的数据绑定和<code>Vue</code>中几乎一样，也是采用<code>字面量</code>(我自己起的名字)的形式，就是使用<code>{}</code>来标注，其实这也算是js代码的一种声明。比如现在我们要把<code>inputValue</code>值绑定到<code>input</code>框中，只要写入下面的代码就可以了。其实说白了就是在JSX中使用js代码。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&#123;this.state.inputValue&#125;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>现在需要看一下是不是可以实现绑定效果，所以把<code>inputValue</code>赋予一个’Sunshine’，然后预览看一下效果。在这里我们并没有进行任何的<code>DOM</code>操作，但是界面已经发生了变化，这些都时<code>React</code>帮我们作的，它还会自动感知数据的变化。</p>
-<h3 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h3><p>这时候你到界面的文本框中去输入值，是没有任何变化的，这是因为我们强制绑定了<code>inputValue</code>的值。如果要想改变，需要绑定<strong>响应事件</strong>，改变<code>inputValue</code>的值。比如绑定一个改变事件，这个事件执行<code>inputChange()</code>(当然这个方法还没有)方法。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input value=&#123;<span class="keyword">this</span>.state.inputValue&#125; onChange=&#123;<span class="keyword">this</span>.inputChange&#125; /&gt;</span><br></pre></td></tr></table></figure>
-
-<p>现在还没有<code>inputChange()</code>这个方法，在<code>render()</code>方法的下面建立一个<code>inputChange()</code>方法，代码如下：</p>
-<figure class="highlight stan"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">inputChange(<span class="built_in">e</span>)&#123;</span><br><span class="line">    console.<span class="built_in">log</span>(<span class="built_in">e</span>.<span class="built_in">target</span>.value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这时候控制台是可以打印出输入的值的。看到获得了输入的值，想当然的认为直接改变<code>inputValue</code>的值就可以了(错的).</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inputChange(e)&#123;</span><br><span class="line">    console.<span class="keyword">log</span>(e.target.value);</span><br><span class="line">    this.<span class="keyword">state</span>.inputValue=e.target.value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>写完后再进行预览，会发现程序直接报错了（加项服务还真的有点难度………..）。</p>
-<p>其实我们范了两个错误：</p>
-<ol>
-<li>一个是<code>this</code>指向不对，你需要重新用<code>bind</code>设置一下指向(ES6的语法)。</li>
-<li>另一个是<code>React</code>中改变值需要使用<code>this.setState</code>方法。</li>
-</ol>
-<p>第一个错误很好解决，直接再<code>JSX</code>部分，利用<code>bind</code>进行绑定就好。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input value=&#123;<span class="keyword">this</span>.state.inputValue&#125; onChange=&#123;<span class="keyword">this</span>.inputChange.bind(<span class="keyword">this</span>)&#125; /&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这步做完，我们还需要加入<code>setState</code>方法，改变值。代码如下:</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">inputChange(e)&#123;</span><br><span class="line">    // console.<span class="built_in">log</span>(e.<span class="keyword">target</span>.<span class="keyword">value</span>);</span><br><span class="line">    // this.state.inputValue=e.<span class="keyword">target</span>.<span class="keyword">value</span>;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">        inputValue:e.<span class="keyword">target</span>.<span class="keyword">value</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>现在测试一下，输入框可以改变值了，里边设计了<code>React</code>的重要思想。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/27/react-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/27/react-06/" class="post-title-link" itemprop="url">React中jsx语法简介</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-27 15:01:47 / 修改时间：15:15:02" itemprop="dateCreated datePublished" datetime="2020-05-27T15:01:47+08:00">2020-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="JSX简介"><a href="#JSX简介" class="headerlink" title="JSX简介"></a>JSX简介</h3><blockquote>
-<p>JSX就是Javascript和XML结合的一种格式。React发明了JSX，可以方便的利用HTML语法来创建虚拟DOM，当遇到<code>&lt;</code>，JSX就当作HTML解析，遇到<code>{</code>就当JavaScript解析.</p>
-</blockquote>
-<p>比如我们写一段JSX语法</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">className</span>=<span class="string">"my-list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>JSPang.com<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>I love React<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>比如我们以前写一段JS代码：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var child1 = <span class="module-access"><span class="module"><span class="identifier">React</span>.</span></span>create<span class="constructor">Element('<span class="params">li</span>', <span class="params">null</span>, 'JSPang.<span class="params">com</span>')</span>;</span><br><span class="line">var child2 = <span class="module-access"><span class="module"><span class="identifier">React</span>.</span></span>create<span class="constructor">Element('<span class="params">li</span>', <span class="params">null</span>, 'I <span class="params">love</span> React')</span>;</span><br><span class="line">var root = <span class="module-access"><span class="module"><span class="identifier">React</span>.</span></span>create<span class="constructor">Element('<span class="params">ul</span>', &#123; <span class="params">className</span>: '<span class="params">my</span>-<span class="params">list</span>' &#125;, <span class="params">child1</span>, <span class="params">child2</span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>从代码量上就可以看出JSX语法大量简化了我们的工作。</p>
-<h3 id="组件和普通JSX语法区别"><a href="#组件和普通JSX语法区别" class="headerlink" title="组件和普通JSX语法区别"></a>组件和普通JSX语法区别</h3><p>这个说起来也只有简单的一句话，就是你自定义的组件必须首写字母要进行大写，而JSX是小写字母开头的。</p>
-<h3 id="JSX使用三元运算符"><a href="#JSX使用三元运算符" class="headerlink" title="JSX使用三元运算符"></a>JSX使用三元运算符</h3><p>在JSX中也是可以使用js语法的，我们先简单讲解一个三元元算符的方法。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">React</span> from <span class="symbol">'reac</span>t'</span><br><span class="line">const <span class="type">Component</span> = <span class="type">React</span>.<span class="type">Component</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;ul className=<span class="string">"my-list"</span>&gt;</span><br><span class="line">                &lt;li&gt;&#123;<span class="literal">false</span>?<span class="symbol">'zhaohui58</span>.cn':<span class="symbol">'Sunshin</span>e'&#125;&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;<span class="type">I</span> love <span class="type">React</span>&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> <span class="type">App</span>;</span><br></pre></td></tr></table></figure>
-
-<p>总结：作为一个初学者对JSX有一个简单的了解</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/27/react-05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/27/react-05/" class="post-title-link" itemprop="url">HelloWord 和组件的讲解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-27 14:54:59 / 修改时间：15:04:37" itemprop="dateCreated datePublished" datetime="2020-05-27T14:54:59+08:00">2020-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>写下下面四行代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码，我们先引入了React两个必要的文件，然后引入了一个APP组件，目前这个组件还是没有的，需要一会建立。然后用React的语法把APP模块渲染到了<code>root</code> ID上面.这个rootID是在<code>public\index.html</code>文件中的。</p>
-<p>这样入口文件就写好了，这时候就需要写APP组件了。</p>
-<h3 id="app组件的编写"><a href="#app组件的编写" class="headerlink" title="app组件的编写"></a>app组件的编写</h3><p>现在写一下App组件，这里我们采用最简单的写法，就输出一个<code>Hello Sunshine</code>,就可以了。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">React</span>, &#123;<span class="type">Component</span>&#125; from <span class="symbol">'reac</span>t'</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                <span class="type">Hello</span> <span class="type">Sunshine</span></span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">export <span class="keyword">default</span> <span class="type">App</span>;</span><br></pre></td></tr></table></figure>
-
-<p>这里会出现一个不能理解的地方，就是：</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br></pre></td></tr></table></figure>
-
-<p>这其实是ES6的语法-解构赋值，如果你分开写就比较清楚了，你可以把上面一行代码写成下面两行.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">const</span> Component = React.Component</span><br></pre></td></tr></table></figure>
-
-<p>当我们这两个文件都编写完成后，可以在终端使用<code>npm start</code>命令，来看一下我们编写的结果了。</p>
-<p><strong>总结：</strong>React的主要优势之一就是组件化编写，这也是现代前端开发的一种基本形式。所以我们在学习React的时候就要多用这种思想，只有不断练习，我们才能在工作中得心应手，轻松自如。小伙伴们也动手作一下吧。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/26/react-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/26/react-04/" class="post-title-link" itemprop="url">脚手架生成的项目目录介绍</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-26 14:00:32" itemprop="dateCreated datePublished" datetime="2020-05-26T14:00:32+08:00">2020-05-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-27 14:50:44" itemprop="dateModified" datetime="2020-05-27T14:50:44+08:00">2020-05-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="项目根目录中的文件"><a href="#项目根目录中的文件" class="headerlink" title="项目根目录中的文件"></a>项目根目录中的文件</h3><p>先从进入项目根目录说起，也就是第一眼看到的文件(版本不同，可能稍有不同)</p>
-<ul>
-<li><strong>README.md</strong> :这个文件主要作用就是对项目的说明，已经默认写好了一些东西，你可以简单看看。如果是工作中，你可以把文件中的内容删除，自己来写这个文件，编写这个文件可以使用<code>Markdown</code>的语法来编写。</li>
-<li><strong>package.json</strong>: 这个文件是<code>webpack</code>配置和项目包管理文件，项目中依赖的第三方包（包的版本）和一些常用命令配置都在这个里边进行配置，当然脚手架已经为我们配置了一些了，目前位置，我们不需要改动。如果你对webpack了解，对这个一定也很熟悉。</li>
-<li><strong>package-lock.json</strong>：这个文件用一句话来解释，就是锁定安装时的版本号，并且需要上传到git，以保证其他人再<code>npm install</code> 时大家的依赖能保证一致。</li>
-<li><strong>gitignore</strong> : 这个是git的选择性上传的配置文件，比如一会要介绍的<code>node_modules</code>文件夹，就需要配置不上传。</li>
-<li><strong>node_modules</strong> :这个文件夹就是我们项目的依赖包，到目前位置，脚手架已经都给我们下载好了，你不需要单独安装什么。</li>
-<li><strong>public</strong> ：公共文件，里边有公用模板和图标等一些东西。</li>
-<li><strong>src</strong> ： 主要代码编写文件，这个文件夹里的文件对我们来说最重要，都需要我们掌握。</li>
-</ul>
-<h3 id="public文件夹介绍"><a href="#public文件夹介绍" class="headerlink" title="public文件夹介绍"></a>public文件夹介绍</h3><p>这个文件都是一些项目使用的公共文件，也就是说都是共用的，我们就具体看一下有那些文件吧。</p>
-<ul>
-<li><strong>favicon.ico</strong> : 这个是网站或者说项目的图标，一般在浏览器标签页的左上角显示。</li>
-<li><strong>index.html</strong> : 首页的模板文件，我们可以试着改动一下，就能看到结果。</li>
-<li><strong>mainifest.json</strong>：移动端配置文件，这个会在以后的课程中详细讲解。</li>
-</ul>
-<h3 id="src文件夹介绍"><a href="#src文件夹介绍" class="headerlink" title="src文件夹介绍"></a>src文件夹介绍</h3><p>这个目录里边放的是我们开放的源代码，我们平时操作做最多的目录。</p>
-<ul>
-<li><strong>index.js</strong> : 这个就是项目的入口文件，视频中我们会简单的看一下这个文件。</li>
-<li><strong>index.css</strong> ：这个是<code>index.js</code>里的CSS文件。</li>
-<li><strong>app.js</strong> : 这个文件相当于一个方法模块，也是一个简单的模块化编程。</li>
-<li><strong>serviceWorker.js</strong>: 这个是用于写移动端开发的，PWA必须用到这个文件，有了这个文件，就相当于有了离线浏览的功能。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/26/react-03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/26/react-03/" class="post-title-link" itemprop="url">React开发环境搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-26 14:00:25" itemprop="dateCreated datePublished" datetime="2020-05-26T14:00:25+08:00">2020-05-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-27 14:50:41" itemprop="dateModified" datetime="2020-05-27T14:50:41+08:00">2020-05-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>使用<code>React.js</code>是可以用最原始的``标签进行引入的工作中也不会有这种形式进行引入。所以就采用脚手架形式的安装。这就需要先安装<code>Node.js</code>，用里边的<code>npm</code>来进行安装。</p>
-<p>Node中文网址：<a href="http://nodejs.cn/" target="_blank" rel="noopener">http://nodejs.cn/</a></p>
-<p>Node.js<code>安装好以后，如果是Windows系统，可以使用</code>Win+R<code>打开运行，然后输入</code>cmd`，打开终端（或者叫命令行工具）</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br></pre></td></tr></table></figure>
-
-<p>如果正确出现版本号，说明Node安装成功了</p>
-<p>然后再输入代码:</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> -v</span><br></pre></td></tr></table></figure>
-
-<p>如果正确出现版本号，说明npm也是没问题的，这时候<code>Node.js</code>安装就算完成了。</p>
-<h3 id="脚手架的安装"><a href="#脚手架的安装" class="headerlink" title="脚手架的安装"></a>脚手架的安装</h3><p>Node安装好之后，你就可以使用npm命令来安装脚手架工具了，方法很简单，只要打开终端，然后输入下面的命令就可以了。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g <span class="keyword">create</span>-react-app</span><br></pre></td></tr></table></figure>
-
-<p>创建第一个React项目</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/26/react-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/26/react-02/" class="post-title-link" itemprop="url">React简介 和 Vue对比</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-26 14:00:18" itemprop="dateCreated datePublished" datetime="2020-05-26T14:00:18+08:00">2020-05-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-27 14:50:34" itemprop="dateModified" datetime="2020-05-27T14:50:34+08:00">2020-05-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="React简介"><a href="#React简介" class="headerlink" title="React简介"></a>React简介</h3><p>React用于构建用户界面的JavaScript库</p>
-<h3 id="React三大体系"><a href="#React三大体系" class="headerlink" title="React三大体系"></a>React三大体系</h3><p><img src="https://gitee.com/sunshine58/image-oss/raw/master/uPic/2020-05/React%E4%B8%89%E5%A4%A7%E4%BD%93%E7%B3%BB.png" alt="React三大体系"></p>
-<p>首先先学会<code>React.js</code>的基本知识，然后再学习<code>ReactNative</code>,这样学习难度会大大降低。</p>
-<h3 id="正式简介"><a href="#正式简介" class="headerlink" title="正式简介"></a>正式简介</h3><p><code>ReactJS</code>是由Facebook在2013年5月推出的一款JS前端<strong>开源</strong>框架,推出式主打特点式<strong>函数式编程</strong>风格。值得一说的是，到目前为止<code>ReactJS</code>是世界上使用人数最多的前端框架,它拥有全球最健全的文档和社区体系。</p>
-<p>ReactJS的官方网站<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></p>
-<h3 id="React与Vue对比"><a href="#React与Vue对比" class="headerlink" title="React与Vue对比"></a>React与Vue对比</h3><p>这是前端最火的两个框架，虽然说React是世界使用人数最多的框架，但是就在国内而言Vue的使用者很有可能超过React。两个框架都是非常优秀的，所以他们在技术和先进性上不相上下。</p>
-<p>那个人而言在接到一个项目时，我是如何选择的那？<code>React.js</code>相对于<code>Vue.js</code>它的灵活性和协作性更好一点，所以我在处理复杂项目或公司核心项目时，React都是我的第一选择。而<code>Vue.js</code>有着丰富的API，实现起来更简单快速，所以当团队不大，沟通紧密时，我会选择Vue，因为它更快速更易用。（需要说明的是，其实Vue也完全胜任于大型项目，这要根据自己对框架的掌握程度来决定，以上只是站在我的知识程度基础上的个人总结）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/26/react-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/26/react-01/" class="post-title-link" itemprop="url">React 前言</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-26 13:59:39" itemprop="dateCreated datePublished" datetime="2020-05-26T13:59:39+08:00">2020-05-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-27 14:50:27" itemprop="dateModified" datetime="2020-05-27T14:50:27+08:00">2020-05-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="React简介"><a href="#React简介" class="headerlink" title="React简介"></a>React简介</h3><p>React.js是全国做火的前端框架（Facebook推出的前端框架），国内的一二线互联网公司大部分都在使用React进行开发，比如阿里、美团、百度、去哪儿、网易 、知乎这样的一线互联网公司都把React作为前端主要技术栈。</p>
-<p>React的社区很强大，随着React的普及衍生了很多有用的框架，比如ReactNative和React VR。React是从13开始推广的。</p>
-<h3 id="React优点总结"><a href="#React优点总结" class="headerlink" title="React优点总结"></a>React优点总结</h3><ul>
-<li><strong>生态强大</strong>：现在没有哪个框架比React的生态体系好的，几乎所有开发需求都有成熟的解决方案。</li>
-<li><strong>上手简单</strong>: 可以在几个小时内就可以上手React技术，但是他的知识很广，可能需要更多的时间来完全驾驭它。</li>
-<li><strong>社区强大</strong></li>
-</ul>
-<h3 id="需要的前置知识"><a href="#需要的前置知识" class="headerlink" title="需要的前置知识"></a>需要的前置知识</h3><ul>
-<li><strong>JavaScript基础</strong>：如果能会ES6就更好了</li>
-<li><strong>npm基础</strong>：你需要会使用npm的包管理</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1024,7 +1111,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

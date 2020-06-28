@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhaohui58.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在react典型的数据流中，props传递是父子组件交互的唯一方式；通过传递一个新的props值来使子组件重新re-render,从而达到父子组件通信。当然，就像react官网所描述的一样，在react典型的数据量之外，某些情况下（例如和第三方的dom库整合，或者某个dom元素focus等）为了修改子组件我们可能需要另一种方式，这就是ref方式。 ref简介React提供的这个ref属性，表示为对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React高级——ref的使用方法">
+<meta property="og:url" content="http://zhaohui58.cn/2020/06/01/react-15/index.html">
+<meta property="og:site_name" content="Sunshine">
+<meta property="og:description" content="在react典型的数据流中，props传递是父子组件交互的唯一方式；通过传递一个新的props值来使子组件重新re-render,从而达到父子组件通信。当然，就像react官网所描述的一样，在react典型的数据量之外，某些情况下（例如和第三方的dom库整合，或者某个dom元素focus等）为了修改子组件我们可能需要另一种方式，这就是ref方式。 ref简介React提供的这个ref属性，表示为对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-01T08:40:09.000Z">
+<meta property="article:modified_time" content="2020-06-01T09:02:27.223Z">
+<meta property="article:author" content="Sunshine">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zhaohui58.cn/2020/06/01/react-15/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React高级——ref的使用方法 | Sunshine</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Sunshine</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Sunshine的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-react">
+
+    <a href="/react/" rel="section"><i class="fa fa-anchor fa-fw"></i>React</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/06/01/react-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React高级——ref的使用方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-01 16:40:09 / 修改时间：17:02:27" itemprop="dateCreated datePublished" datetime="2020-06-01T16:40:09+08:00">2020-06-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在react典型的数据流中，<code>props</code>传递是父子组件交互的唯一方式；通过传递一个新的<code>props</code>值来使子组件重新<code>re-render</code>,从而达到父子组件通信。当然，就像react官网所描述的一样，在react典型的数据量之外，某些情况下（例如和第三方的dom库整合，或者某个dom元素focus等）为了修改子组件我们可能需要另一种方式，这就是<code>ref</code>方式。</p>
+<h3 id="ref简介"><a href="#ref简介" class="headerlink" title="ref简介"></a>ref简介</h3><p>React提供的这个<code>ref</code>属性，<strong>表示为对组件真正实例的引用，其实就是<code>ReactDOM.render()返回的组件实例</code></strong>；需要区分一下，<code>ReactDOM.render()</code>渲染组件时返回的是组件实例；而渲染dom元素时，返回是具体的dom节点。</p>
+<p><code>ref</code>可以挂到任何组件上，可以挂到组件上也可以是dom元素上；</p>
+<blockquote>
+<p>挂到组件（这里组件指的是有状态组件）上的ref表示对组件实例的引用，而挂载到dom元素上时表示具体的dom元素节点。</p>
+</blockquote>
+<h3 id="ref可以设置回调函数"><a href="#ref可以设置回调函数" class="headerlink" title="ref可以设置回调函数"></a>ref可以设置回调函数</h3><p>ref属性可以设置为一个回调函数，这也是官方强烈推荐的用法；这个函数执行的时机为：</p>
+<ul>
+<li><code>组件被挂载后</code>，回调函数被立即执行，回调函数的参数为该组件的具体实例。</li>
+<li><code>组件被卸载或者原有的ref属性本身发生变化时</code>，回调也会被立即执行，此时回调函数参数为<code>null</code>，以确保内存泄露。</li>
+</ul>
+<p>例如下面代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">RegisterStepTwo = React.createClass(&#123;</span><br><span class="line">        getInitialState()&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;visible: <span class="literal">true</span>&#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">      changeVisible()&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;visible: !<span class="keyword">this</span>.state.visible&#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">      refCb(instance)&#123;</span><br><span class="line">        console.log(instance);</span><br><span class="line">      &#125;,</span><br><span class="line">      render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;button type=<span class="string">"button"</span> onClick=&#123;<span class="keyword">this</span>.changeVisible&#125;&gt;&#123;<span class="keyword">this</span>.state.visible ? <span class="string">'卸载'</span> : <span class="string">'挂载'</span>&#125;ConfirmPass</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="keyword">this</span>.state.visible ?</span><br><span class="line">                &lt;ConfirmPass ref=&#123;<span class="keyword">this</span>.refCb&#125; onChange=&#123;<span class="keyword">this</span>.handleChange&#125;/&gt;: <span class="literal">null</span></span><br><span class="line">             &#125;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">         )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上述代码，渲染到页面时可以发现console.log出对应的组件实例，切换按钮时，<code>ConfirmPass</code>也在挂载与卸载之间切换，所以能看到不同的console.log结果。</p>
+<h3 id="ref可以设置字符串"><a href="#ref可以设置字符串" class="headerlink" title="ref可以设置字符串"></a>ref可以设置字符串</h3><p>ref还可以设置为字符串值，而不是回调函数；这种方式基本不推荐使用，或者在未来的react版本中不会再支持该方式，但是可以了解一下。</p>
+<p>例如下面<code>input</code>设置ref的值为字符串。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">input</span> <span class="keyword">ref</span>="input" /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后在其他地方如事件回调中通过<code>this.refs.input</code>可以访问到该组件实例，其实就是dom元素节点。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let inputEl = <span class="keyword">this</span>.<span class="built_in">ref</span>s.input;</span><br><span class="line"><span class="comment">//然后通过inputEl来完成后续的逻辑，如focus、获取其值等等</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取ref引用组件对应的dom节点"><a href="#获取ref引用组件对应的dom节点" class="headerlink" title="获取ref引用组件对应的dom节点"></a>获取ref引用组件对应的dom节点</h3><p>不管ref设置值是回调函数还是字符串，都可以通过<code>ReactDOM.findDOMNode(ref)</code>来获取组件挂载后真正的dom节点。</p>
+<p>但是对于html元素使用ref的情况，ref本身引用的就是该元素的实际dom节点，无需使用<code>ReactDOM.findDOMNode(ref)</code>来获取，该方法常用于React组件上的ref。</p>
+<h3 id="ref在有状态组件中的使用"><a href="#ref在有状态组件中的使用" class="headerlink" title="ref在有状态组件中的使用"></a>ref在有状态组件中的使用</h3><p>上文说到过<code>ref</code>用到react有状态组件时，ref引用的是组件的实例；所以可以通过子组件的<code>ref</code>可以访问到子组件实例的<code>props</code>、<code>state</code>、<code>refs</code>、实例方法(非继承而来的方法)等等。</p>
+<h3 id="ref在无状态组件中的使用"><a href="#ref在无状态组件中的使用" class="headerlink" title="ref在无状态组件中的使用"></a>ref在无状态组件中的使用</h3><p>无法通过<code>ref</code>来获取无状态组件实例。</p>
+<p>另外，对于无状态组件我们想访问的无非是其中包含的组件或者dom元素，我们可以通过一个变量来保存我们想要的组件或者dom元素组件的实例引用。例如下面代码：</p>
+<p>copy</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TestComp</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> refDom;</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line">        &lt;div ref=&#123;(node) =&gt; refDom = node&#125;&gt;</span><br><span class="line">            ...</span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这样，可以通过变量<code>refDom</code>来访问到无状态组件中的指定dom元素了，访问其中的其他组件实例类似。</p>
+<h3 id="ref在HOC中存在问题"><a href="#ref在HOC中存在问题" class="headerlink" title="ref在HOC中存在问题"></a>ref在HOC中存在问题</h3><p>react的<code>HOC</code>是高阶组件，简单理解就是包装了一个低阶的组件，最后返回一个高阶的组件；高阶组件其实是在低阶组件基础上做了一些事情，比方说<a href="https://ant.design/docs/react/introduce-cn" target="_blank" rel="noopener"><code>antd</code></a>组件的<code>Form create</code>的方法，它就是在为低阶组件封装了一些特殊的属性，比如<code>form</code>属性。</p>
+<p>既然<code>HOC</code>会基于低阶组件生成一个新的高阶组件，若用<code>ref</code>就不能访问到我们真正需要的低阶组件实例，我们访问到的其实是高阶组件实例。所以:</p>
+<blockquote>
+<p>若HOC不做特殊处理，ref是无法访问到低阶组件实例的</p>
+</blockquote>
+<p>要想用<code>ref</code>访问低阶组件实例，就必须得HOC支持，就像<code>Redux</code>的connect方法提供的<code>withRef</code>属性来访问低阶组件一样。具体可以参考<a href="https://segmentfault.com/a/1190000008112017#articleHeader12" target="_blank" rel="noopener">这里</a>。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>ref</code>提供了一种对于react标准的数据流不太适用的情况下组件间交互的方式，例如管理dom元素focus、text selection以及与第三方的dom库整合等等。 但是在大多数情况下应该使用react响应数据流那种方式，不要过度使用ref。</p>
+<p>另外，在使用ref时，不用担心会导致内存泄露的问题，react会自动帮你管理好，在组件卸载时ref值也会被销毁。</p>
+<p>最后补充一点：</p>
+<blockquote>
+<p>不要在组件的<code>render</code>方法中访问<code>ref</code>引用，<code>render</code>方法只是返回一个虚拟dom，这时组件不一定挂载到dom中或者render返回的虚拟dom不一定会更新到dom中。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/30/react-14/" rel="prev" title="React高级——PropTypes校验传递值">
+      <i class="fa fa-chevron-left"></i> React高级——PropTypes校验传递值
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/01/react-16/" rel="next" title="React高级——生命周期">
+      React高级——生命周期 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sunshine"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">Sunshine</p>
+  <div class="site-description" itemprop="description">热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Powered By - Sunshine</span>
+</div>
+  <div class="powered-by">
+   个人专属  ｜  博客-Sunshine
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
