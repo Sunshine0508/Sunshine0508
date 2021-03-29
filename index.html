@@ -121,6 +121,16 @@
     <a href="/react/" rel="section"><i class="fa fa-anchor fa-fw"></i>React</a>
 
   </li>
+        <li class="menu-item menu-item-typescript">
+
+    <a href="/typeScript/" rel="section"><i class="fa fa-cog fa-fw"></i>TypeScript</a>
+
+  </li>
+        <li class="menu-item menu-item-vue3.0">
+
+    <a href="/vue3.0/" rel="section"><i class="fa fa-cog fa-fw"></i>VUE3.0</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
@@ -154,6 +164,191 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2021/03/25/vue3-0-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/25/vue3-0-02/" class="post-title-link" itemprop="url">VUE3.0 setup(),reactive,ref,toRefs使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-25 15:12:31 / 修改时间：15:18:46" itemprop="dateCreated datePublished" datetime="2021-03-25T15:12:31+08:00">2021-03-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>vue3常用函数的使用</p>
+<ul>
+<li><p><code>setup</code> 函数用法,可以代替Vue2中的data和method属性,直接把逻辑加在setup中</p>
+</li>
+<li><p><code>ref</code> 函数在temlate中用的变量需要用ref包装下</p>
+</li>
+<li><p>return出去的数组和方法在模板中才可以使用</p>
+</li>
+<li><p><code>reactive</code>函数的用法,他的参数不是基本类型,而是一个object,这样就你不用在方法中写<code>.value</code>了,同时放回<code>data</code>就可以</p>
+<p>但是这样写,必须在<code>template</code>使用变量和方法的时候需要加上<code>data.</code>,这样显然是不符合我们开发的编码习惯的,<br>我们可以想到在return的时候将data解构使用<code>...</code>拓展运算符,但是这样解构后就成了普通变量,不再具有响应式的能力,<br>所以我们需要使用toRefs()函数</p>
+</li>
+</ul>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><span class="template-variable">&#123;&#123;loginName &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><span class="template-variable">&#123;&#123;userName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><span class="template-variable">&#123;&#123;password&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">  import &#123;reactive,ref,toRefs&#125; from "vue"</span></span><br><span class="line"><span class="xml">    export default &#123;</span></span><br><span class="line"><span class="xml">        name: "Home",</span></span><br><span class="line"><span class="xml">        setup() &#123;</span></span><br><span class="line"><span class="xml">          const fromData = reactive(&#123;</span></span><br><span class="line"><span class="xml">            userName:'admin',</span></span><br><span class="line"><span class="xml">            password:'123456'</span></span><br><span class="line"><span class="xml">          &#125;)</span></span><br><span class="line"><span class="xml">          const loginName = ref("admin");</span></span><br><span class="line"><span class="xml">          const data = toRefs(fromData);</span></span><br><span class="line"><span class="xml">          return &#123;</span></span><br><span class="line"><span class="xml">            ...data,</span></span><br><span class="line"><span class="xml">            loginName </span></span><br><span class="line"><span class="xml">          &#125;</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>如何选择ref和reactive,两种方法都可以,他们都可以生成响应式对象,个人选择<code>reactive</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2021/03/25/vue3-0-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="Sunshine">
+      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sunshine">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/25/vue3-0-01/" class="post-title-link" itemprop="url">vue3.0前言</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-25 14:35:50 / 修改时间：15:01:16" itemprop="dateCreated datePublished" datetime="2021-03-25T14:35:50+08:00">2021-03-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Vue 是一套用于构建用户界面的<strong>渐进式框架</strong>。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://vue3js.cn/docs/zh/guide/single-file-component.html" target="_blank" rel="noopener">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#components--libraries" target="_blank" rel="noopener">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</p>
+<h4 id="创建3-0项目"><a href="#创建3-0项目" class="headerlink" title="创建3.0项目"></a>创建3.0项目</h4><p>通过脚手架vite安装</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init vite-app hello-vue3 <span class="comment"># OR yarn create vite-app hello-vue3</span></span><br></pre></td></tr></table></figure>
+
+<p>Vite目前仅支持 Vue 3.x以上，这意味着你不能使用不兼容Vue 3的组件库</p>
+<p>目前基于Vue的第三方组件库兼容Vue 3的情况：</p>
+<p>Ant Design Vue：支持 Vue 3.0 的 2.0.0 测试版已发布</p>
+<p>ElementUI：尚未支持</p>
+<p>MintUI：尚未支持</p>
+<p>iView(ViewUI)：尚未支持</p>
+<p>Vue2-leaflet：很明显不支持</p>
+<p>通过脚手架vue-cli安装</p>
+<p>首先全局更新最新版的 Vue CLI，4.5.0以上版本支持 Vue3：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g <span class="title">@vue</span>/cli # OR yarn <span class="keyword">global</span> <span class="keyword">add</span> <span class="title">@vue</span>/cli</span><br><span class="line">vue create hello-vue<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Vue3-0-的设计目标"><a href="#Vue3-0-的设计目标" class="headerlink" title="Vue3.0 的设计目标"></a><strong>Vue3.0 的设计目标</strong></h4><ul>
+<li><p>更小</p>
+</li>
+<li><p>更快</p>
+</li>
+<li><p>加强 TypeScript 支持</p>
+</li>
+<li><p>加强 API 设计一致性</p>
+</li>
+<li><p>提高自身可维护性</p>
+</li>
+<li><p>开放更多底层功能</p>
+</li>
+</ul>
+<h4 id="压缩包体积更小"><a href="#压缩包体积更小" class="headerlink" title="压缩包体积更小"></a><strong>压缩包体积更小</strong></h4><p>当前最小化并被压缩的 Vue 运行时大小约为 20kB（2.6.10 版为 22.8kB）。Vue 3.0 捆绑包的大小大约会减少一半，即只有 10kB！</p>
+<h4 id="Object-defineProperty-—-gt-Proxy"><a href="#Object-defineProperty-—-gt-Proxy" class="headerlink" title="Object.defineProperty —&gt; Proxy"></a><strong>Object.defineProperty —&gt; Proxy</strong></h4><p>Object.defineProperty 是一个相对比较昂贵的操作，因为它直接操作对象的属性，颗粒度比较小。将它替换为 es6 的 Proxy，在目标对象之上架了一层拦截，代理的是对象而不是对象的属性。这样可以将原本对对象属性的操作变为对整个对象的操作，颗粒度变大。</p>
+<p>javascript 引擎在解析的时候希望对象的结构越稳定越好，如果对象一直在变，可优化性降低，proxy 不需要对原始对象做太多操作。</p>
+<h4 id="virtual-DOM-重构"><a href="#virtual-DOM-重构" class="headerlink" title="virtual DOM 重构"></a><strong>virtual DOM 重构</strong></h4><p>vdom 的本质是一个抽象层，用 javascript 描述界面渲染成什么样子。react 用 jsx，没办法检测出可以优化的动态代码，所以做时间分片，vue 中足够快的话可以不用时间分片。</p>
+<p>vue 的特点是底层为 Virtual DOM，上层包含有大量静态信息的模版。为了兼容手写 render function，最大化利用模版静态信息，vue3.0 采用了动静结合的解决方案，将 vdom 的操作颗粒度变小，每次触发更新不再以组件为单位进行遍历，主要更改如下</p>
+<ul>
+<li>将模版基于动态节点指令切割为嵌套的区块</li>
+<li>每个区块内部的节点结构是固定的</li>
+<li>每个区块只需要以一个 Array 追踪自身包含的动态节点</li>
+</ul>
+<p><strong>vue3.0 将 vdom 更新性能由与模版整体大小相关提升为与动态内容的数量相关</strong></p>
+<h4 id="Vue-3-中需要关注的一些新功能包括："><a href="#Vue-3-中需要关注的一些新功能包括：" class="headerlink" title="Vue 3 中需要关注的一些新功能包括："></a>Vue 3 中需要关注的一些新功能包括：</h4><ul>
+<li>组合式 API</li>
+<li>Teleport</li>
+<li>片段</li>
+<li>触发组件选项</li>
+<li>createRenderer API 来自@vue/runtime-core 创建自定义渲染器</li>
+<li>单文件组件组合式 API 语法糖</li>
+<li>单文件组件状态驱动的 css 变量</li>
+<li>单文件组件<code>style scoped</code>现在可以包含全局规则或只针对插槽内容的规则</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -867,179 +1062,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/30/react-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/30/react-10/" class="post-title-link" itemprop="url">React进阶——安装Simple React Snippets</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-30 13:05:50 / 修改时间：13:13:52" itemprop="dateCreated datePublished" datetime="2020-05-30T13:05:50+08:00">2020-05-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="安装Simple-React-Snippets"><a href="#安装Simple-React-Snippets" class="headerlink" title="安装Simple React Snippets"></a>安装Simple React Snippets</h3><p>打开<code>VSCode</code>的插件查单，然后在输入框中输入<code>Simple React Snippets</code>,然后点击进行安装就可以了。</p>
-<p>###　快速进行引入<code>import</code></p>
-<p>直接在<code>vscode</code>中输入<code>imrc</code>，就会快速生成最常用的import代码。</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="快速生成class"><a href="#快速生成class" class="headerlink" title="快速生成class"></a>快速生成class</h3><p>在作组件的时候，都需要写一个固定的基本格式，这时候你就可以使用快捷键<code>cc</code>.插件就会快速帮我们生成如下代码：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>  <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    state = &#123;  &#125;</span><br><span class="line">    render() &#123; </span><br><span class="line">        <span class="keyword">return</span> (  );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> ;</span><br></pre></td></tr></table></figure>
-
-<p>还有很多快捷键，如果你需要理解，打开插件的说明文件看一下就可以了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhaohui58.cn/2020/05/27/react-09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="Sunshine">
-      <meta itemprop="description" content="热爱漫无边际<br>生活自有分寸<br>不去抱怨<br>不怕孤独<br>努力沉淀<br>愿追寻梦想的的路上<br>成为更好的自己">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sunshine">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/27/react-09/" class="post-title-link" itemprop="url">React进阶——JSX踩坑的几个地方</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-27 16:28:49 / 修改时间：16:42:51" itemprop="dateCreated datePublished" datetime="2020-05-27T16:28:49+08:00">2020-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="JSX代码注释"><a href="#JSX代码注释" class="headerlink" title="JSX代码注释"></a>JSX代码注释</h3><p><code>JSX</code>中的代码注释是非常有讲究的，这个书上介绍的也非常少，所以在这里讲一下，因为在初学<code>React</code>在这里踩过坑。</p>
-<p>第一次写<code>JSX</code>注释，是直接这样写的，当然这样写是完全不对的。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Fragment&gt;</span><br><span class="line">    <span class="comment">//第一次写注释，这个是错误的</span></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input value=&#123;<span class="keyword">this</span>.state.inputValue&#125; onChange=&#123;<span class="keyword">this</span>.inputChange.bind(<span class="keyword">this</span>)&#125; /&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.addList.bind(<span class="keyword">this</span>)&#125;&gt; 增加项目 &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>那写<code>JSX</code>的注释，可以有下面两种写法:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Fragment&gt;</span><br><span class="line">    &#123;<span class="comment">/* 正确注释的写法 */</span>&#125;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input value=&#123;<span class="keyword">this</span>.state.inputValue&#125; onChange=&#123;<span class="keyword">this</span>.inputChange.bind(<span class="keyword">this</span>)&#125; /&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.addList.bind(<span class="keyword">this</span>)&#125;&gt; 增加项目 &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如果你记不住，有个简单的方法，就是用<code>VSCode</code>的快捷键，直接按<code>Ctrl+/</code>，就会自动生成正确的注释了。</p>
-<p>你可以把这个理解为，在jsx中写javascript代码。所以外出我们套入了<code>{}</code>，然后里边就是一个多行的javascript注释。如果你要使用单行祝注释<code>//</code>，你需要把代码写成下面这样。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Fragment&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//正确注释的写法 </span></span><br><span class="line">    &#125;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input value=&#123;<span class="keyword">this</span>.state.inputValue&#125; onChange=&#123;<span class="keyword">this</span>.inputChange.bind(<span class="keyword">this</span>)&#125; /&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.addList.bind(<span class="keyword">this</span>)&#125;&gt; 增加项目 &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>也就是你要进行换行，所以个人认为这种方法不太优雅，所以推荐第一种注释方法。</p>
-<h3 id="JSX中的class陷阱"><a href="#JSX中的class陷阱" class="headerlink" title="JSX中的class陷阱"></a>JSX中的class陷阱</h3><p>react中要把<code>class</code>换成<code>className</code>，它是防止和<code>js</code>中的<code>class</code>类名 冲突，所以要求换掉。这也算是一个小坑吧。</p>
-<h3 id="JSX中的html解析问题"><a href="#JSX中的html解析问题" class="headerlink" title="JSX中的html解析问题"></a>JSX中的html解析问题</h3><p>如果想在文本框里输入一个<code>标签，并进行渲染。默认是不会生效的，只会把</code>标签打印到页面上，这并不是我想要的。如果工作中有这种需求，可以使用<code>dangerouslySetInnerHTML</code>属性解决。具体代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.list.map(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">                &lt;li </span><br><span class="line">                    key=&#123;index+item&#125;</span><br><span class="line">                    onClick=&#123;<span class="keyword">this</span>.deleteItem.bind(<span class="keyword">this</span>,index)&#125;</span><br><span class="line">                    dangerouslySetInnerHTML=&#123;&#123;<span class="attr">__html</span>:item&#125;&#125;</span><br><span class="line">                &gt;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">            )</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码就可以实现<code>html</code>格式的输出。</p>
-<p>JSX中label标签的坑</p>
-<p>JSX中``的坑，也算是比较大的一个坑，label是<code>html</code>中的一个辅助标签，也是非常有用的一个标签。</p>
-<p>先看下面的代码，我们在文本框前面加入一个``。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>加入项目：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">className</span>=<span class="string">"input"</span> <span class="attr">value</span>=<span class="string">&#123;this.state.inputValue&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;this.inputChange.bind(this)&#125;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.addList.bind(this)&#125;</span>&gt;</span> 增加项目 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这时候想点击“加入项目”直接可以激活文本框，方便输入。按照<code>html</code>的原思想，是直接加ID就可以了。代码如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"Sunshine"</span>&gt;</span>加入项目：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"Sunshine"</span> <span class="attr">className</span>=<span class="string">"input"</span> <span class="attr">value</span>=<span class="string">&#123;this.state.inputValue&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;this.inputChange.bind(this)&#125;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.addList.bind(this)&#125;</span>&gt;</span> 增加项目 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这时候你浏览效果虽然可以正常，但<code>console</code>里还是有红色警告提示的。大概意思是不能使用<code>for</code>.它容易和javascript里的for循环混淆，会提示你使用<code>htmlfor</code>。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">htmlFor</span>=<span class="string">"Sunshine"</span>&gt;</span>加入项目：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"Sunshine"</span> <span class="attr">className</span>=<span class="string">"input"</span> <span class="attr">value</span>=<span class="string">&#123;this.state.inputValue&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;this.inputChange.bind(this)&#125;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.addList.bind(this)&#125;</span>&gt;</span> 增加项目 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这时候代码就正确了，可以实现点击后,激活标签了。</p>
-<p>这节算是我总结的一些<code>JSX</code>中的坑吧，总结出来，希望小伙伴们少踩这些坑，能快速上手<code>React</code>。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1111,7 +1133,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1143,7 +1165,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
